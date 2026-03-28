@@ -85,7 +85,46 @@
         .wish-status.error { background: #fff0f0; color: #a63333; }
         .wish-status.success { background: #edf8ef; color: #1f6b37; }
         
-        @media (max-width: 600px) { .grid-info { grid-template-columns: 1fr; } .map-container { height: 300px; } }
+        @media (max-width: 768px) {
+            header { padding: 36px 14px; }
+            .header-icon { width: 84px; margin-bottom: 10px; }
+            .header-image { margin-top: 14px; border-radius: 10px; }
+            .container { margin: -18px 12px 24px; padding: 18px; border-radius: 12px; }
+            h1 { font-size: 1.65rem !important; line-height: 1.25; }
+            h2 { font-size: 1.15rem; }
+            .guest-invite { font-size: 1.2rem; margin-top: 12px; }
+            .card { padding: 14px; }
+            .wish-section { margin-top: 24px; padding: 16px; border-radius: 12px; }
+            .wish-form { gap: 10px; margin-top: 12px; }
+            .wish-input, .wish-textarea { padding: 10px 12px; border-radius: 10px; font-size: 0.95rem; }
+            .wish-textarea { min-height: 96px; }
+            .wish-button { padding: 9px 14px; font-size: 0.92rem; }
+            .wish-item { padding: 12px; border-radius: 10px; }
+            .wish-item-name { font-size: 0.98rem; }
+            .wish-item-date { font-size: 0.78rem; margin-bottom: 6px; }
+            .wish-item-message { font-size: 0.94rem; }
+            .wish-status { margin-top: 10px; padding: 10px 12px; font-size: 0.9rem; }
+            .map-open-btn { padding: 9px 14px; font-size: 0.9rem; }
+        }
+
+        @media (max-width: 600px) {
+            .grid-info { grid-template-columns: 1fr; }
+            .map-container { height: 260px; }
+            .parking-section { padding: 14px; }
+            .parking-section p { font-size: 0.92rem; line-height: 1.55; margin-bottom: 12px; }
+            .parking-item {
+                padding-left: 16px;
+                margin-bottom: 14px;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .parking-item-text { font-size: 0.92rem; line-height: 1.5; }
+            .map-link {
+                font-size: 0.75em;
+                padding: 5px 10px;
+                margin-left: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -202,12 +241,17 @@
 
 
 <script>
+    const DEFAULT_PAGE_TITLE = "Lê Thảo Anh - Lễ Tốt Nghiệp UEH 2026";
+    const INVITE_TITLE_SUFFIX = "- Lễ Tốt Nghiệp UEH 2026";
     const guestInvite = document.getElementById("guest-invite");
     const guestName = new URLSearchParams(window.location.search).get("q")?.trim();
 
     if (guestName) {
         guestInvite.textContent = `Kính mời ${guestName}`;
         guestInvite.hidden = false;
+        document.title = `Lê Thảo Anh mời ${guestName} ${INVITE_TITLE_SUFFIX}`;
+    } else {
+        document.title = DEFAULT_PAGE_TITLE;
     }
 
     const GAS_URL = "https://script.google.com/macros/s/AKfycbxzAFzrRcofTzXUAqQmPwyR8R4gPbynuL44Tm0JVvHpgkesQAjE32FnFXhwW2d4FihM/exec";
